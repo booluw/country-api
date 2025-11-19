@@ -49,13 +49,29 @@ router.get('/countries', async function (req, res) {
     const { q } = req.query;
 
     if (!q) {
-      res.json({ data: json, message: "All Countries returned" })
+
+      const result = json.map((country) => {
+        const {
+          states: _states,
+          timezones: _timezones,
+          translations: _translations,
+          ...rest
+        } = country;
+        return rest
+      })
+
+      res.json({ data: result, message: "All Countries returned" })
       return
     }
 
     const filtered = json.map((country) => {
       if (country.name.toLowerCase().includes(q.toLocaleLowerCase())) {
-        const { states: _states, ...rest } = country
+        const {
+          states: _states,
+          timezones: _timezones,
+          translations: _translations,
+          ...rest
+        } = country;
         return rest
       }
 
