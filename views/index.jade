@@ -1,5 +1,28 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1 Country Search API Demo
+
+    hr
+
+    h2 Sample Response
+    blockqoute { data: [], message: "" }
+
+    h2 Search countries by name
+    blockqoute /api/countries?q=COUNTRY_NAME
+
+    h2 Search States by Country Name
+    blockqoute /api/states?q=COUNTRY_NAME
+
+    h2 Get all countries
+    blockqoute /api/
+
+    h2 Search countries and get state and cities
+    blockqoute /api?q=COUNTRY_NAME
+
+    br 
+    br 
+
+    hr
+    br
+    a(href='https://thisisbooluw.website') Booluw
