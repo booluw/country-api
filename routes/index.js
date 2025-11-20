@@ -101,13 +101,13 @@ router.get("/states", async function (req, res) {
     const { q } = req.query;
 
     if (!q) {
-      res.json({ data: json, message: "All Countries returned" });
+      res.json({ data: json, message: "All states returned" });
       return;
     }
 
     const filtered = json
       .map((country) => {
-        if (country.name.toLowerCase().includes(q.toLocaleLowerCase())) {
+        if (country.id == q) {
           return country.states;
         }
 
@@ -115,7 +115,7 @@ router.get("/states", async function (req, res) {
       })
       .filter((item) => item !== null);
 
-    res.json({ data: filtered, message: `Countries with: ${q} returned` });
+    res.json({ data: filtered[0], message: `States with country id: ${q} returned` });
     return;
   } catch (error) {
     res.json({ message: "An Error occurred", error });
